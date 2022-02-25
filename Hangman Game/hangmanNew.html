@@ -1,0 +1,686 @@
+<html>
+<head>
+<title>Hangman Page</title>
+<style>
+
+body {
+  background-image: url("whiteBg.jpg");
+}
+
+p {
+  font-family: arial;
+}
+
+.top {
+ width:100px;
+ height:100px;
+
+}
+
+.buttonClass {
+ width:95px;
+ height:95px;
+ /*display: block;
+ margin-left: auto;
+ margin-right: auto;*/
+}
+
+/*Button Type 1*/
+
+/* button idea from w3schools */
+/* was changed to have the arrow point the other way */
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+  /* padding-right: 5px; */
+}
+
+.button:hover span {
+  padding-left: 30px;
+}
+
+.button:hover span:before {
+  opacity: 1;
+  left: 0;
+}
+
+/*Button Type 2*/
+
+.button2 {
+  position: relative;
+  background-color: #f4511e;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 28px;
+  color: #FFFFFF;
+  /* padding: 20px; */
+  width: 90;
+  height: 90;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* button idea from w3schools */
+.button2:after {
+  content: "";
+  background: #e0896d;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button2:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+/*Button Type 3*/
+
+.button3 {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button3 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button3 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button3:hover span {
+  padding-right: 25px;
+}
+
+.button3:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#button3Id {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**/
+
+#screenText {
+  text-align: center;
+}
+
+#screenTextDiv {
+  font-size: 40px;
+  width: 40%;
+  margin: 0;
+  position: absolute;
+  top: 58%;
+  /* left: 72%; */
+  transform: translate(-50%, -50%);
+  white-space: pre; /* So the white space appears */
+}
+
+img {
+  width: 40%;
+  margin: 0;
+  position: absolute;
+  top: 41%;
+  left: 39%;
+  transform: translate(-50%, -50%);
+}
+
+#start {
+  margin: 0;
+  position: absolute;
+  font-size: 28;
+  width: 100;
+  height: 74;
+  top: 6.45%;
+  left: 26%;
+  transform: translate(-50%, -50%);
+}
+
+#playAgain {
+  width: 150;
+  height: 74;
+  margin: 0;
+  position: absolute;
+  top: 6.45%;;
+  left: 37%;
+  transform: translate(-50%, -50%);
+}
+
+#cityId {
+  width: 40%;
+  height: 40%;
+  margin: 0;
+  position: absolute;
+  clip: rect(0px,800px,800px,0);
+  top: 29%;
+  left: 72%;
+  transform: translate(-50%, -50%);
+}
+
+#whiteBg {
+  width: 130%;
+  height: 105%;
+}
+
+#userInput {
+  font-size: 30;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#userText {
+  font-size: 60;
+  font-weight: bold;
+  font-family: arial;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#stats {
+  position: absolute;
+  top: 44%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  width: 175px;
+  padding-left: 30;
+  padding-right: 30;
+  padding-top: 15;
+  border-radius: 20px;
+}
+
+#buttonDiv {
+  position: absolute;
+  top: 85%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  width: 1200;
+}
+
+#userBtnId {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#endMessage {
+  position: absolute;
+  margin: 0;
+  top: 56%;
+  transform: translate(-10%, -50%);
+}
+
+#endMessageAlign {
+  text-align: left;
+  padding-top: 0;
+  width: 180px;
+  height: 70px;
+  display: inline-block;
+  /* border: solid red 1px; */
+}
+
+#endMessageDiv {
+  text-align: center;
+  position: absolute;
+  width: 250px;
+  height: 70px;
+  margin: 0;
+  top: 16%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  /* border: solid black 1px; */
+}
+
+</style>
+
+</head>
+<body>
+
+<p id="userText"></p>
+
+<input type="text" maxlength = "15" id="userInput">
+
+<button class="button" id="back" onclick="location.href='hangmanHomepage.html'"><span>Back </span></button>
+<!-- <button class="top" onClick="myFunction()" id="start"></button>
+<button class="top" onClick="reset()" id="playAgain"></button><br><br> -->
+
+<!-- To allow movement -->
+<div id="button3Id">
+<button class="button3" id="userBtnId" onclick="takeUsername()"><span>Input Username </span></button>
+</div>
+
+<div id="endMessageDiv">
+  <div id="endMessageAlign">
+      <p id="endMessage"></p>
+  </div>
+</div>
+
+<!--<img src="hangman1.png" alt="Hangman" width="500">-->
+
+<div id="screenTextDiv">
+  <p id="screenText"></p>
+</div>
+
+<!--<p>Letters picked:</p>-->
+<div id="stats">
+<p id="userStat"></p>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="correct"></p>
+<p id="incorrect"></p>
+<p id="ratio"></p>
+<p id="score"></p>
+<br>
+</div>
+<div id="buttonDiv"></div>
+
+<div id="usernameDiv"></div>
+
+<script>
+
+document.getElementById("userText").innerHTML = "Username";
+
+var username;
+var usernameCheck = false; //allows the hangman game to begin
+
+function takeUsername() {
+  username = document.getElementById("userInput").value;
+  if (username=="") {
+    alert("Inadmissible username.");
+  } else {
+    usernameCheck = true;
+    runHangman();
+  }
+}
+
+function runHangman() { //so this part of the code is re-read
+
+if (usernameCheck) {
+
+//so the screenText goes into the right positon
+document.getElementById("screenTextDiv").style.paddingLeft = "143%";
+
+document.getElementById("stats").style.backgroundColor = "rgb(0, 0, 0, 0.08)";
+
+//removing elements used to get the username
+document.body.removeChild(document.getElementById("userInput"));
+document.body.removeChild(document.getElementById("userText"));
+document.body.removeChild(document.getElementById("button3Id"));
+
+//so that nothing appears when the username is being inputted
+document.getElementById("userStat").innerHTML = "Username: " + username;
+document.getElementById("p1").innerHTML = "Letters Picked: ";
+document.getElementById("p2").innerHTML = "Number of Attempts: 0";
+document.getElementById("correct").innerHTML = "Correct Guesses: 0";
+document.getElementById("incorrect").innerHTML = "Incorrect Guesses: 0";
+document.getElementById("ratio").innerHTML = "Win Percentage: 0%";
+document.getElementById("score").innerHTML = "Score: 0";
+
+//creates the start button
+var startButton = document.createElement("BUTTON");
+startButton.id = "start";
+startButton.className = "button2";
+startButton.addEventListener("click", myFunction);
+document.body.appendChild(startButton);
+
+//creates the play again button
+var playAgainButton = document.createElement("BUTTON");
+playAgainButton.id = "playAgain";
+playAgainButton.className = "button2";
+playAgainButton.addEventListener("click", resetFunction);
+document.body.appendChild(playAgainButton);
+
+//so the button starts off disabled
+document.getElementById("playAgain").disabled = true;
+document.getElementById("playAgain").style.background='#72240c'; //changes the color of the button to show that it is disabled
+document.getElementById("playAgain").style.color="#b2b2b2";
+
+document.getElementById("start").innerHTML = "Start";
+document.getElementById("playAgain").innerHTML = "Play Again";
+
+var wins = 0;
+var losses = 0;
+var incorrectG = 0; //gets the amount of incorrect guess
+var img = document.createElement("IMG"); //to creat hangman images
+img.id = "hangId";
+var img2 = document.createElement("IMG");
+
+var screenText = document.getElementById("screenText");
+var p1 = document.getElementById("p1");
+var bgColor = "";
+
+var tries = 0;
+var num = random(); //number corresponding to a random element in an array
+var score = 0; //keeps track of the game score
+
+var word = new Array();
+var text = new Array();
+var city = new Array();
+
+var correctGuesses = 0;
+
+word = ["DUBAI", "FRANKFURT", "LONDON", "LOS ANGELES", "MOSCOW", "NEW YORK", "OTTAWA", "PARIS", "SHANGHAI", "SYDNEY", "TOKYO", "TORONTO", "WARSAW", "WASHINGTON"];
+city = ["dubai.jpg", "frankfurt.jpg", "london.png", "losAngeles.png", "moscow.jpg", "newYork.jpeg", "ottawa.jpg", "paris.jpg", "shanghai.jpg", "sydney.jpg", "tokyo.jpg", "toronto.jpg", "warsaw.jpg", "washington.jpg"];
+
+document.body.style.backgroundColor = bgColor;
+
+function createText() {
+  text = "";
+  for (var i=0;i<word[num].length;i++) {
+    if (word[num].charAt(i)==" ") {
+      text = text + String.fromCharCode(160) + String.fromCharCode(160);
+    } else {
+      text = text + "_ ";
+    }
+  }
+  return text;
+}
+var oldText = createText();
+
+function cityImage() {
+  var x = document.createElement("IMG2");
+  img2.id = "cityId";
+  img2.setAttribute("src", city[num]);
+  img2.setAttribute("width", "304");
+  img2.setAttribute("alt", "citySkyline");
+  document.body.appendChild(img2);
+}
+cityImage();
+function hangmanImg() {
+  var x = document.createElement("IMG");
+  img.id = "hangId";
+  if (incorrectG != 0) {
+    document.getElementById("hangId").remove();
+    if (incorrectG>6) {
+      img.setAttribute("src", "hangman8.png");
+      lose();
+    } else if (incorrectG>5) {
+      img.setAttribute("src", "hangman7.png");
+    } else if (incorrectG>4) {
+      img.setAttribute("src", "hangman6.png");
+    } else if (incorrectG>3) {
+      img.setAttribute("src", "hangman5.png");
+    } else if (incorrectG>2) {
+      img.setAttribute("src", "hangman4.png");
+    }  else if (incorrectG>1) {
+      img.setAttribute("src", "hangman3.png");
+    } else {
+      img.setAttribute("src", "hangman2.png");
+    }
+  } else {
+    img.setAttribute("src", "hangman1.png");
+  }
+  img.setAttribute("width", "304");
+  img.setAttribute("alt", "hangman");
+  document.body.appendChild(img);
+}
+hangmanImg();
+
+var wordLength = word[num].length;
+
+function random() {
+  return Math.floor(Math.random()*14);
+}
+
+screenText.innerHTML = createText();
+
+function myFunction() {
+
+  //disables the start button
+  document.getElementById("start").disabled = true;
+  document.getElementById("start").style.background='#72240c'; //changes the color of the button to show that it is disabled
+  document.getElementById("start").style.color="#b2b2b2";
+
+  var d = document.getElementById("buttonDiv");
+
+//makes the "try it" button only work once
+if (tries == 0) {
+  tries += 1;
+
+  for(x=1;x<=26;x++){
+
+	  //use the createElement function to create known HTML elements
+    var btn = document.createElement("BUTTON");
+	  var myP = document.createElement("br");
+
+	  //why start at 64? Because the letter 'A' is code 65
+    var letter = String.fromCharCode(x+64);
+    var t = document.createTextNode(letter);
+
+	  //add the text stored in 't' to our button variable
+    btn.appendChild(t);
+	  //give the btn an id to make it easy to access later
+    btn.id = letter;
+    //to style the buttons in CSS
+    btn.className = "button2";
+
+	  //this is how to add an event to the button -- name the event and
+    //then include the function you want it to perform
+    btn.addEventListener("click", checkLetter);
+
+    //add the btn to the page
+	  d.appendChild(btn);
+	  //add a line break 'myP' after 13 buttons
+	  if (x%13==0) {
+	     d.appendChild(myP);
+	    }
+    }
+  }
+}
+function checkLetter() {
+  letter = this.id;
+  newText = "";
+  wordLength = word[num].length; //to re-input the length of the world
+  //checks if the letter is in the word
+  if (word[num].includes(letter)) { //checks if the word has the letter
+    correctGuesses = correctGuesses + 1; //to show that the user made a correct guess
+    for (i=0;i<wordLength;i++) { //finds and replaces the dashes with the letter
+      if (word[num].charAt(i)==letter) { //finds what position the first letter is in
+        newText = newText + letter + " ";
+      } else {
+        newText = newText + oldText.charAt(2*i) + " "; //x2 for the spaces between the dashes
+      }
+    }
+    oldText = newText;
+    screenText.innerHTML = oldText;
+  }
+  pickLetter(letter);
+  incorrectG = document.getElementById("p1").innerHTML.substring(16).length - correctGuesses; //so the hangmanImg function is up to date with the number of incorrect guesses
+  hangmanImg(); //updates the hangman image
+  win();
+  scoreFunction();
+  document.getElementById("ratio").innerHTML = document.getElementById("ratio").innerHTML.substring(0,16) + winLoss();
+}
+
+function pickLetter(letter){
+  if (!p1.innerHTML.substring(17).includes(letter)) {
+    document.getElementById(letter).disabled = true;
+    document.getElementById(letter).style.background='#72240c'; //changes the color of the button to show that it is disabled
+    document.getElementById(letter).style.color="#b2b2b2";
+  }
+	p1.innerHTML += letter;
+  numOfAtmpts();
+  correct();
+  incorrect();
+	//document.getElementById("picBox").innerHTML = "Change this to a picture of your choice";
+}
+
+function win() {
+  if (!document.getElementById("screenText").innerHTML.includes("_") && incorrectG<7) {
+
+    //enables the play again button
+    document.getElementById("playAgain").disabled = false;
+    document.getElementById("playAgain").style.background='#f4511e'; //changes the color of the button back to its "enabled" colour
+    document.getElementById("playAgain").style.color="#FFFFFF";
+
+    wins = wins+1; // adds one to the win counter
+    var amount;
+    if (incorrectG==6) {
+      amount = 50;
+    } else if (incorrectG==5) {
+      amount = 75;
+    } else if (incorrectG==4) {
+      amount = 100;
+    } else if (incorrectG==3) {
+      amount = 150;
+    } else if (incorrectG==2) {
+      amount = 200;
+    } else if (incorrectG==1) {
+      amount = 250;
+    } else {
+      amount = 500;
+    }
+    score = score + amount;
+    document.getElementById("endMessage").innerHTML = "Congratulations " + username + ", you've won! You've earned " + amount + " points.";
+  }
+}
+
+function lose() {
+  //enables the play again button
+  document.getElementById("playAgain").disabled = false;
+  document.getElementById("playAgain").style.background='#f4511e'; //changes the color of the button back to its "enabled" colour
+  document.getElementById("playAgain").style.color="#FFFFFF";
+
+  losses = losses+1;
+  var scoreDecreaseMsg = "";
+  if (!(score < 100)) {
+    score = score-100;
+    scoreDecreaseMsg = " Your score has decreased by 100."
+  } else if (!(score < 50)) {
+    score = score-75;
+    scoreDecreaseMsg = " Your score has decreased by 50."
+  }
+  document.getElementById("endMessage").innerHTML = "You've lost, " + username + "."+ scoreDecreaseMsg;
+  for (i=65;i<91;i++) {
+    document.getElementById(String.fromCharCode(i)).disabled = true;
+    document.getElementById(String.fromCharCode(i)).style.background="#72240c";
+    document.getElementById(String.fromCharCode(i)).style.color="#b2b2b2";
+  }
+  var lossText = "";
+  for (i=0;i<word[num].length;i++) {
+    lossText = lossText + word[num].charAt(i) + " ";
+  }
+  document.getElementById("screenText").innerHTML = lossText;
+}
+
+function scoreFunction() {
+  document.getElementById("score").innerHTML = document.getElementById("score").innerHTML.substring(0,7) + score; //updates the score
+}
+
+function winLoss() {
+  var percent = wins/(wins+losses);
+  if (isNaN(percent)) {
+    return 0; //so that winLoss doesn't show NaN
+  }
+    return Math.round(percent*100)+"%";
+}
+
+function resetFunction() {
+  for (i=65;i<91;i++) {
+    document.getElementById(String.fromCharCode(i)).disabled = false;
+    document.getElementById(String.fromCharCode(i)).style.background="#f4511e";
+    document.getElementById(String.fromCharCode(i)).style.color="white";
+  }
+  document.getElementById("endMessage").innerHTML = ""; //clears the endMessage text
+  num = random() //changes the word
+  oldText = createText() //resets the text array
+  cityImage();
+  document.getElementById("screenText").innerHTML = createText();
+  document.getElementById("p1").innerHTML = "Letters Picked: ";
+  document.getElementById("p2").innerHTML = "Number of Attempts: 0";
+  correctGuesses = 0;
+  incorrectG = 0; //so the hangman image resets
+  correct();
+  incorrect();
+  hangmanImg();
+  document.getElementById("playAgain").disabled = true;
+  document.getElementById("playAgain").style.background='#72240c'; //changes the color of the button to show that it is disabled
+  document.getElementById("playAgain").style.color="#b2b2b2";
+}
+
+function numOfAtmpts() {
+  document.getElementById("p2").innerHTML = document.getElementById("p2").innerHTML.substring(0,20) + document.getElementById("p1").innerHTML.substring(16).length;
+}
+
+function correct() {
+  document.getElementById("correct").innerHTML = document.getElementById("correct").innerHTML.substring(0,17) + correctGuesses;
+}
+
+function incorrect() {
+  document.getElementById("incorrect").innerHTML = document.getElementById("incorrect").innerHTML.substring(0,19) + (document.getElementById("p1").innerHTML.substring(16).length - correctGuesses);
+}
+
+function changeColor(){
+	this.style.backgroundColor="blue";
+}
+
+} //ends the large if statement
+
+} //ends the large runHangman() function
+
+</script>
+</body>
+</html>

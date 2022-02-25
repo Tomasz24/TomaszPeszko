@@ -1,0 +1,211 @@
+<html>
+<head>
+<title>hangmanHelp</title>
+<style>
+
+body {
+  background-image: url("whiteBg.jpg");
+}
+
+p, ol {
+  font-family: arial;
+}
+
+ol {
+  margin-left: 270;
+  margin-right: 270;
+  line-height: 1.5;
+}
+
+p {
+  text-align: center;
+  color: #f4511e;
+  margin-top: 5%;
+  font-size: 100;
+  font-weight: bold;
+
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800;
+}
+
+/* button idea from w3schools */
+/* was changed to have the arrow point the other way */
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+  /* padding-right: 5px; */
+}
+
+.button:hover span {
+  padding-left: 30px;
+}
+
+.button:hover span:before {
+  opacity: 1;
+  left: 0;
+}
+
+#title {
+  text-align: center;
+  color: #f4511e;
+  margin-top: 5%;
+  font-size: 100;
+  font-weight: bold;
+}
+
+#playBtn {
+  width: 150;
+  height: 50;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#howBtn {
+  width: 150;
+  height: 50;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#aboutBtn {
+  width: 150;
+  height: 50;
+  margin: 0;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#list {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1250;
+}
+
+</style>
+</head>
+<body>
+
+<button class="button" id="back" onclick="location.href='hangmanHomepage.html'"><span>Back </span></button>
+
+<p id="title">HOW TO PLAY</p>
+<div id="list">
+  <ol>
+    <li>Select the play button on the previous page and subsequently input a username into the corresponding input location.
+      <ul>
+        <li>The username cannot exceed 15 characters in length.
+        </li>
+        <li>The username cannot be 0 characters in length (i.e. a username is required.)
+        </li>
+      </ul>
+    </li>
+    <li>After the username is inputted in the text box, proceed by finalizing the decision by selecting "Input Username".
+      <ul>
+        <li>The username cannot be later changed without restarting the game.
+        </li>
+      </ul>
+    </li>
+    <li>Inputting the user name launches the hangman game directly. This page is from where the game is played.
+    </li>
+    <li>Directly to the left, statistics regarding the game are available.
+      <ul>
+        <li>Username
+        </li>
+        <li>Letter picked
+        </li>
+        <li>Number of attempts
+        </li>
+        <li>Number of correct guesses
+        </li>
+        <li>Number of incorrect guesses
+        </li>
+        <li>Win percentage
+        </li>
+        <li>Score
+        </li>
+      </ul>
+    </li>
+    <li>The objective of the game is to guess the secret word correctly.
+      <ul>
+        <li>Every word in this hangman game is a city (e.g. New York).
+        </li>
+      </ul>
+    </li>
+    <li>The image in the top right is the skyline of the mystery city. Its purpose is to aid in identification.
+    </li>
+    <li>If seven mistakes are made, the game ends with a loss. The city in question is revealed, and the option to play-again becomes available. Conversely, if every letter of
+      the city is correctly identified, the game is won. Similarly, the option to play-again also becomes available.
+    </li>
+    <li>Wins and losses increase or decrease your score.
+    </li>
+    <li>The amount of point earned depends on the amount of incorrect guesses.
+      <ul>
+        <li>0 incorect guesses: 500.
+        </li>
+        <li>1 incorect guesses: 250.
+        </li>
+        <li>2 incorect guesses: 200.
+        </li>
+        <li>3 incorect guesses: 150.
+        </li>
+        <li>4 incorect guesses: 100.
+        </li>
+        <li>5 incorect guesses: 75.
+        </li>
+        <li>6 incorect guesses: 50.
+        </li>
+      </ul>
+    </li>
+    <li>A loss decreases the score by 100.
+      <ul>
+        <li>A loss will not decrease the score to below 0.
+        </li>
+      </ul>
+    </li>
+    <li>To begin the game, select "Start". The letters of the alphabet will appear at the bottom of the screen, all of which arranged in two rows in respective order.
+    </li>
+  </ol>
+</div>
+
+<script>
+
+
+</script>
+</body>
+</html>
